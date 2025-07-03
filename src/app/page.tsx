@@ -50,7 +50,11 @@ function TypewriterText({ text }: { text: string }) {
   )
 }
 
-export default function Home() {
+interface HomeProps {
+  initialFile?: string;
+}
+
+export default function Home({ initialFile }: HomeProps) {
   return (
     <div className="flex-1 w-full flex flex-col items-center justify-center">
       {/* Enhanced Hero Background */}
