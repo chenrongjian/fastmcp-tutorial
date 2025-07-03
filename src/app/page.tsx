@@ -1,103 +1,123 @@
-import Image from "next/image";
+'use client';
+import Link from 'next/link'
+import { FiBookOpen, FiGithub, FiUsers } from 'react-icons/fi'
+import { ReactNode, useEffect, useState } from 'react'
+
+function TypewriterText({ text }: { text: string }) {
+  const [displayText, setDisplayText] = useState('')
+  const [isTyping, setIsTyping] = useState(true)
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout
+
+    if (isTyping) {
+      if (currentIndex < text.length) {
+        // 打字过程
+        timer = setTimeout(() => {
+          setDisplayText(prev => prev + text[currentIndex])
+          setCurrentIndex(prev => prev + 1)
+        }, 50)
+      } else {
+        // 打字完成，等待一段时间后开始删除
+        timer = setTimeout(() => {
+          setIsTyping(false)
+        }, 2000)
+      }
+    } else {
+      if (currentIndex > 0) {
+        // 删除过程
+        timer = setTimeout(() => {
+          setDisplayText(prev => prev.slice(0, -1))
+          setCurrentIndex(prev => prev - 1)
+        }, 30)
+      } else {
+        // 删除完成，等待一段时间后重新开始打字
+        timer = setTimeout(() => {
+          setIsTyping(true)
+        }, 1000)
+      }
+    }
+
+    return () => clearTimeout(timer)
+  }, [currentIndex, isTyping, text])
+
+  return (
+    <span className="typewriter-text">
+      {displayText}
+      <span className="cursor">|</span>
+    </span>
+  )
+}
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex-1 w-full flex flex-col items-center justify-center">
+      {/* Enhanced Hero Background */}
+      <div className="pointer-events-none fixed inset-0 flex items-center justify-center bg-black">
+        <div className="h-[40rem] w-[40rem] bg-[radial-gradient(circle_at_center,rgba(0,140,255,0.3)_0%,transparent_60%)] opacity-60 blur-[120px] animate-pulse-slow" />
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <div className="flex flex-col items-center justify-center gap-8 px-4 py-4">
+        <div className="text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-lg select-none">
+            FastMCP 中文教程
+          </h1>
+
+          <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl text-center leading-relaxed min-h-[3.5rem]">
+            <TypewriterText 
+              text="构建 LLM 工具与上下文的下一代开源框架，为开发者提供极致的 "
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <span className="text-white font-semibold">MCP</span>
+            <TypewriterText text=" 体验。" />
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+        {/* Re-architected Card Grid */}
+        <div className="home-cards-container">
+          <HomeCard 
+            href="/docs" 
+            title="文档" 
+            desc="快速上手与深度指南" 
+            icon={<FiBookOpen size={24} />}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <HomeCard 
+            href="https://github.com/fastmcp/fastmcp" 
+            title="GitHub" 
+            desc="Star & Fork FastMCP 源码" 
+            icon={<FiGithub size={24} />}
+            external 
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <HomeCard 
+            href="/docs/community-showcase" 
+            title="社区" 
+            desc="优秀案例与插件生态" 
+            icon={<FiUsers size={24} />}
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </div>
     </div>
-  );
+  )
+}
+
+function HomeCard({ href, title, desc, icon, external = false }: { href: string; title:string; desc: string; icon: ReactNode, external?: boolean }) {
+  return (
+    <Link
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      className="crystal-card"
+    >
+        <div className="icon-wrapper">
+            {icon}
+        </div>
+        <div className="text-content">
+            <h3>
+                {title}
+                <span>→</span>
+            </h3>
+            <p>{desc}</p>
+        </div>
+    </Link>
+  )
 }

@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FastMCP Tutorial
 
-## Getting Started
+![FastMCP Banner](public/fastmcp-banner.png)
 
-First, run the development server:
+FastMCP教程是一个基于Next.js构建的文档网站，提供MCP（Modular Coprocessor）框架的完整使用指南、API文档和集成示例。
 
+## ✨ 项目特点
+
+- **完整文档**：涵盖MCP服务器、SDK、工具集成等全方位内容
+- **交互式示例**：提供可直接运行的代码示例和教程
+- **响应式设计**：适配桌面和移动设备的阅读体验
+- **实时更新**：修改文档内容后自动刷新页面
+
+## 🚀 快速开始
+
+### 前提条件
+- Node.js 18.x 或更高版本
+- npm、yarn、pnpm 或 bun 包管理器
+
+### 安装步骤
+
+1. 克隆仓库
+```bash
+git clone https://github.com/chenrongjian/fastmcp-tutorial.git
+cd fastmcp-tutorial
+```
+
+2. 安装依赖
+```bash
+npm install
+# 或
+yarn install
+# 或
+pnpm install
+# 或
+bun install
+```
+
+3. 启动开发服务器
 ```bash
 npm run dev
-# or
+# 或
 yarn dev
-# or
+# 或
 pnpm dev
-# or
+# 或
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. 在浏览器中打开 [http://localhost:3000](http://localhost:3000) 查看网站
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📚 文档内容
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+项目文档位于 `public` 目录下，主要包含以下类别：
 
-## Learn More
+- **入门指南**：`getting-started-*.md`
+- **客户端开发**：`clients-*.md` 和 `sdk-client-*.md`
+- **服务器开发**：`servers-*.md` 和 `sdk-server-*.md`
+- **工具集成**：`integrations-*.md`
+- **教程**：`tutorials-*.md`
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 开发指南
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 修改文档
+1. 编辑 `public` 目录下的 Markdown 文件
+2. 页面会自动刷新以反映更改
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 添加新文档
+1. 在 `public` 目录下创建新的 Markdown 文件
+2. 更新导航配置（位于 `src/lib/constants.ts`）
 
-## Deploy on Vercel
+## �部署
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+推荐使用 Vercel 部署本项目：
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. 推送代码到 GitHub 仓库
+2. 在 [Vercel](https://vercel.com) 导入项目
+3. 等待自动部署完成
+
+## 🤝 贡献
+
+欢迎通过以下方式贡献：
+- 提交 Issue 报告问题或建议
+- 提交 Pull Request 改进文档或代码
+- 在社区分享使用经验
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+
+---
+
+Made with ❤️ by FastMCP Team

@@ -1,26 +1,707 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #f5f5f7;
+  --background: #0a0a0a;
+  --surface-primary: rgba(22, 22, 23, 0.8);
+  --surface-secondary: rgba(28, 28, 30, 0.8);
+  --text-primary: #f5f5f7;
+  --text-secondary: #86868b;
+  --accent: #2997ff;
+  --accent-hover: #0071e3;
+  --nav-height: 44px;
+  --footer-height: 50px;
+  --sidebar-width: 280px;
+  --blur-background: rgba(0, 0, 0, 0.5);
+  --shadow-1: 0 2px 8px rgba(0,0,0,0.6);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 基础样式 */
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* 滚动条样式 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Hide default scrollbar for Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+  background: var(--surface-primary);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  box-shadow: var(--shadow-1);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  height: calc(100vh - var(--nav-height));
+}
+
+.sidebar-collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.sidebar-group-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 1.5rem 0 0.75rem;
+  padding-left: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-menu-btn {
+  border-radius: 8px;
+  margin: 2px 0.5rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  transition: all 0.2s ease-in-out;
+  background: transparent;
+  color: var(--text-primary);
+  width: calc(100% - 1rem);
+  text-align: left;
+  border: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.sidebar-menu-btn.active,
+.sidebar-menu-btn:hover {
+  background: var(--surface-secondary);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.sidebar-divider {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1rem 0;
+}
+
+/* 移动端遮罩 */
+.sidebar-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--blur-background);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 40;
+}
+
+/* 侧边栏切换按钮 */
+.sidebar-toggle-btn-fixed {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 36px;
+  height: 36px;
+  background: var(--surface-secondary);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 50%;
+  color: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-1);
+}
+
+.sidebar-toggle-btn-fixed:hover {
+  background: var(--accent);
+  color: var(--foreground);
+  transform: scale(1.08);
+}
+
+/* 主内容区域 */
+.main-content {
+  padding: 0.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.main-content-scroll {
+  height: calc(100dvh - var(--footer-height));
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+/* 页脚 */
+.site-footer {
+  background: var(--surface-primary);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  height: var(--footer-height);
+  overflow: hidden;
+}
+
+.footer-link {
+  color: var(--text-secondary);
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+/* Markdown 样式 */
+.prose {
+  color: var(--text-primary);
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: var(--foreground);
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.025em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+@media (max-width: 768px) {
+  .prose h1 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .prose h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.prose h2 {
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.prose strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.prose a {
+  color: #a5d8ff;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+/* Add subtle underline animation on hover */
+.prose a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+  opacity: 0.8;
+}
+
+.prose a:hover::after {
+  width: 100%;
+}
+
+.prose a:hover {
+  color: #dbeafe;
+}
+
+.prose code {
+  background: var(--surface-secondary);
+  color: var(--foreground);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 0.875em;
+  font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, monospace;
+}
+
+.prose pre {
+  position: relative;
+  padding: 1rem;
+  background-color: var(--surface-secondary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.prose pre code {
+  background-color: transparent !important;
+  border: none !important;
+  font-size: 0.9em;
+  line-height: 1.6;
+  font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, monospace;
+}
+
+/* 代码块内容区域 */
+.prose pre > code {
+  display: block;
+  padding-right: 2.5rem;
+  overflow-x: auto;
+}
+
+/* 代码复制按钮 */
+.code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem;
+  background-color: var(--surface-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.25rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.code-copy-btn:hover {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+}
+
+/* 加载指示器样式 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #a5d8ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 15px rgba(165, 216, 255, 0.12);
+}
+
+.loading-text {
+  color: #a5d8ff;
+  font-size: 0.875rem;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulseSlow {
+  0%,100%{opacity:.8}
+  50%{opacity:.3}
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 8s ease-in-out infinite;
+}
+
+/* Active menu left accent bar */
+.sidebar-menu-btn.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Shine effect for cards */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background-image: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  transform: rotate(25deg) translateX(-100%);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.shine-effect:hover::after {
+  transform: rotate(25deg) translateX(100%);
+}
+
+/* Cleanup of old/ineffective styles */
+.glass-card, .home-card, .shine-effect,
+.glass-card:link, .home-card:link,
+.glass-card:visited, .home-card:visited {
+  display: none !important; /* Hide to ensure they don't interfere */
+}
+
+/* === NEW, ROBUST HOMEPAGE STYLES === */
+
+.home-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+  padding: 0 1rem;
+}
+
+@media (max-width: 1024px) {
+  .home-cards-container {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+.crystal-card {
+  width: 18rem;
+  height: 7.5rem;
+  border-radius: 1.25rem;
+  padding: 0.75rem;
+  background: rgba(38, 38, 41, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+  text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.crystal-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: 1px;
+  background: linear-gradient(75deg, rgba(255,255,255,0.1), rgba(255,255,255,0.25)); 
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.crystal-card:hover {
+  transform: translateY(-8px) perspective(800px) rotateX(4deg);
+  background: rgba(38, 38, 41, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 25px 40px -12px rgba(0, 140, 255, 0.2);
+}
+
+.crystal-card:hover::before {
+  opacity: 1;
+}
+
+.crystal-card .icon-wrapper {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a5d8ff;
+  transition: all 0.3s ease;
+}
+
+.crystal-card:hover .icon-wrapper {
+  background: rgba(255, 255, 255, 0.15);
+  color: #dbeafe;
+  transform: scale(1.1);
+}
+
+.crystal-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.crystal-card h3 span {
+  transition: transform 0.3s ease;
+}
+
+.crystal-card:hover h3 span {
+  transform: translateX(5px);
+}
+
+.crystal-card p {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* 响应式卡片调整 */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .crystal-card {
+    width: 14rem;
+    height: 8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .crystal-card {
+    width: 100%;
+    height: auto;
+    min-height: 7rem;
+  }
+  
+  .main-content {
+    padding: 0.5rem;
+  }
+}
+
+.crystal-card:hover p {
+  color: #d1d5db;
+}
+
+/* General Link fix */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Footer link fix */
+footer a {
+  color: var(--text-secondary) !important;
+  transition: color 0.2s;
+}
+footer a:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Typewriter cursor animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #a5d8ff;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+
+.typewriter-text {
+  display: inline;
+  position: relative;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.typewriter-text:hover {
+  opacity: 1;
+}
+
+/* Markdown content styling */
+.markdown-content {
+  color: #e5e7eb;
+  line-height: 1.75;
+}
+
+.markdown-content h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.markdown-content p {
+  margin-bottom: 1rem;
+}
+
+.markdown-content a {
+  color: #a5d8ff;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+/* Add subtle underline animation on hover */
+.markdown-content a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+  opacity: 0.8;
+}
+
+.markdown-content a:hover::after {
+  width: 100%;
+}
+
+.markdown-content a:hover {
+  color: #dbeafe;
+}
+
+.markdown-content code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.markdown-content pre {
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
 }
