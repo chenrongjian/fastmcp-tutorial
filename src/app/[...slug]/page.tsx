@@ -10,7 +10,7 @@ export default function CatchAllPage({ params }: { params: { slug: string[] } })
 
   // 如果是直接访问md文件，直接渲染Home组件
   if (filePath.endsWith('.md')) {
-    return <Home key={mdFile} initialFile={mdFile} />;
+    return <Home key={mdFile} />;
   }
 
   // 如果不是.md结尾，重定向到带.md后缀的URL
@@ -19,4 +19,4 @@ export default function CatchAllPage({ params }: { params: { slug: string[] } })
   }, [mdFile, router]);
 
   return null;
-} 
+}
