@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将发布！
-
-[FastMCP 首页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问AI
-
-搜索...
-
-导航
-
 [​](https://gofastmcp.com/changelog#v2-8-0)
 
 v2.8.0
@@ -171,10 +158,6 @@ v2.7.0
 - 修复README.md中的链接由[@alainivars](https://github.com/alainivars)在[#723](https://github.com/jlowin/fastmcp/pull/723)中实现
 
 令人高兴的是，此版本确实允许使用“裸”装饰器以符合Python实践：
-
-复制
-
-询问AI
 
 ```
 @mcp.tool

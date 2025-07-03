@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将发布！
-
-[FastMCP 主页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问AI
-
-搜索...
-
-导航
-
 认证
 
 Bearer Token 认证
@@ -48,10 +35,6 @@ FastMCP使用**非对称加密**进行令牌验证，这在令牌发行者和Fas
 
 `BearerAuthProvider`需要静态公钥或JWKS URI（但不能同时需要！）以验证令牌的签名。所有其他参数都是可选的——如果提供，它们将用作额外的验证标准。
 
-复制
-
-询问AI
-
 ```
 from fastmcp import FastMCP
 from fastmcp.server.auth import BearerAuthProvider
@@ -80,10 +63,6 @@ mcp = FastMCP(name="My MCP Server", auth=auth)
 
 如果您有PEM格式的公钥，可以将其作为字符串提供给`BearerAuthProvider`。
 
-复制
-
-询问AI
-
 ```
 from fastmcp.server.auth import BearerAuthProvider
 import inspect
@@ -102,10 +81,6 @@ auth = BearerAuthProvider(public_key=public_key_pem)
 
 #### [​](https://gofastmcp.com/servers/auth/bearer\#jwks-uri) JWKS URI
 
-复制
-
-询问AI
-
 ```
 provider = BearerAuthProvider(
     jwks_uri="https://idp.example.com/.well-known/jwks.json"
@@ -123,9 +98,6 @@ JWKS推荐用于生产环境，因为它支持自动密钥轮换和多个签名�
 
 ### [​](https://gofastmcp.com/servers/auth/bearer\#basic-token-generation) 基本令牌生成
 
-复制
-
-询问AI
 
 ```
 from fastmcp import FastMCP
@@ -174,9 +146,6 @@ print(f"测试令牌: {token}")
 
 身份验证后，您的工具、资源或提示可以使用`get_access_token()`依赖函数访问令牌信息：
 
-复制
-
-询问AI
 
 ```
 from fastmcp import FastMCP, Context, ToolError
@@ -224,7 +193,3 @@ async def get_my_data(ctx: Context) -> dict:
 - [令牌创建参数](https://gofastmcp.com/servers/auth/bearer#token-creation-parameters)
 - [访问令牌声明](https://gofastmcp.com/servers/auth/bearer#accessing-token-claims)
 - [AccessToken属性](https://gofastmcp.com/servers/auth/bearer#accesstoken-properties)
-
-助手
-
-响应由AI生成，可能包含错误。

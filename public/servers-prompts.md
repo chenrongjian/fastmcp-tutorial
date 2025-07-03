@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将推出！
-
-[FastMCP 主页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问 AI
-
-搜索...
-
-导航
-
 核心组件
 
 提示词
@@ -34,9 +21,6 @@ Ctrl K询问 AI
 
 定义提示词最常见的方式是装饰Python函数。装饰器使用函数名作为提示词的标识符。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -79,10 +63,6 @@ FastMCP智能处理提示词函数的不同返回类型：
 - **`list[PromptMessage | str]`：** 用作消息序列（对话）。
 - **`Any`：** 如果返回类型不是上述之一，将尝试将返回值转换为字符串并用作`PromptMessage`。
 
-复制
-
-询问 AI
-
 ```
 from fastmcp.prompts.prompt import Message
 
@@ -104,9 +84,6 @@ def roleplay_scenario(character: str, situation: str) -> list[Message]:
 2. 允许验证从客户端接收的参数。
 3. 用于为MCP协议生成提示词的模式。
 
-复制
-
-询问 AI
 
 ```
 from pydantic import Field
@@ -133,9 +110,6 @@ def generate_content_request(
 
 函数签名中的参数被视为**必需**，除非它们有默认值。
 
-复制
-
-询问 AI
 
 ```
 @mcp.prompt
@@ -158,9 +132,6 @@ def data_analysis_prompt(
 
 虽然FastMCP从函数推断名称和描述，但您可以使用`@mcp.prompt`装饰器的参数覆盖这些并添加标签：
 
-复制
-
-询问 AI
 
 ```
 @mcp.prompt(
@@ -190,9 +161,6 @@ def data_analysis_prompt(
 
 默认情况下，所有提示词都是启用的。您可以在创建时使用装饰器中的`enabled`参数禁用提示词：
 
-复制
-
-询问 AI
 
 ```
 @mcp.prompt(enabled=False)
@@ -204,9 +172,6 @@ def experimental_prompt():
 
 您还可以在创建提示词后以编程方式切换其状态：
 
-复制
-
-询问 AI
 
 ```
 @mcp.prompt
@@ -222,9 +187,6 @@ seasonal_prompt.enable()
 
 FastMCP无缝支持标准（`def`）和异步（`async def`）函数作为提示词。
 
-复制
-
-询问 AI
 
 ```
 # 同步提示词
@@ -253,10 +215,6 @@ async def data_based_prompt(data_id: str) -> str:
 
 提示词可以通过`Context`对象访问其他MCP信息和功能。要访问它，请在提示词函数中添加一个类型注解为`Context`的参数：
 
-复制
-
-询问 AI
-
 ```
 from fastmcp import FastMCP, Context
 
@@ -279,9 +237,6 @@ async def generate_report_request(report_type: str, ctx: Context) -> str:
 
 您可以配置FastMCP服务器如何处理尝试注册多个同名提示词的情况。在`FastMCP`初始化期间使用`on_duplicate_prompts`设置。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -324,7 +279,3 @@ def greeting(): return "你好，今天我能帮你什么？"
 - [访问MCP上下文](https://gofastmcp.com/servers/prompts#accessing-mcp-context)
 - [服务器行为](https://gofastmcp.com/servers/prompts#server-behavior)
 - [重复提示词](https://gofastmcp.com/servers/prompts#duplicate-prompts)
-
-助手
-
-响应由AI生成，可能包含错误。

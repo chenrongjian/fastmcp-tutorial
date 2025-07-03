@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将推出！
-
-[FastMCP 主页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问 AI
-
-搜索...
-
-导航
-
 服务器
 
 OpenAPI 集成
@@ -24,10 +11,6 @@ FastMCP 可以从 OpenAPI 规范或 FastAPI 应用自动生成 MCP 服务器。�
 要将 OpenAPI 规范转换为 MCP 服务器，可以使用 `FastMCP.from_openapi` 类方法。此方法接受 OpenAPI 规范和可用于向 API 发出请求的异步 HTTPX 客户端，并返回 MCP 服务器。
 
 示例如下：
-
-复制
-
-询问 AI
 
 ```
 import httpx
@@ -69,10 +52,6 @@ if __name__ == "__main__":
 
 以下是 FastMCP 的默认规则：
 
-复制
-
-询问 AI
-
 ```
 from fastmcp.server.openapi import RouteMap, MCPType
 
@@ -88,10 +67,6 @@ DEFAULT_ROUTE_MAPPINGS = [\
 创建 FastMCP 服务器时，可以通过提供自己的 `RouteMap` 对象列表来自定义路由行为。自定义映射在默认路由映射之前处理，路由将分配给第一个匹配的自定义映射。
 
 例如，在 FastMCP 2.8.0 之前，GET 请求会根据是否有路径参数自动映射到 `Resource` 和 `ResourceTemplate` 组件。（此更改仅出于客户端兼容性原因。）您可以通过提供自定义路由映射恢复此行为：
-
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -115,10 +90,6 @@ mcp = FastMCP.from_openapi(
 使用这些映射后，GET 请求将按语义处理，所有其他方法（POST、PUT 等）将落入默认规则并成为工具。
 
 以下是一个更完整的示例，使用自定义路由映射将 `/analytics/` 下的所有 GET 端点转换为工具，同时排除所有管理端点和标记为“internal”的所有路由。所有其他路由将由默认规则处理：
-
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -159,10 +130,6 @@ mcp = FastMCP.from_openapi(
 
 您可以通过专门定位敏感或内部路由来删除它们：
 
-复制
-
-询问 AI
-
 ```
 from fastmcp import FastMCP
 from fastmcp.server.openapi import RouteMap, MCPType
@@ -178,10 +145,6 @@ mcp = FastMCP.from_openapi(
 ```
 
 或者，您可以使用 catch-all 规则排除映射未明确处理的所有内容：
-
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -211,9 +174,6 @@ mcp = FastMCP.from_openapi(
 
 `route_map_fn`**会**在自定义映射中匹配 `MCPType.EXCLUDE` 的路由上调用，让您有机会覆盖排除。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -254,9 +214,6 @@ FastMCP 提供多种方式向 MCP 组件添加标签，允许您对其进行分�
 
 您可以使用 `RouteMap` 中的 `mcp_tags` 参数向从特定路由创建的组件添加自定义标签。这些标签将应用于从匹配该特定路由映射的路由创建的所有组件。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -301,9 +258,6 @@ from\_openapi()
 
 from\_fastapi()
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -330,9 +284,6 @@ FastMCP 根据 OpenAPI 规范自动生成 MCP 组件的名称。默认情况下�
 
 要更好地控制组件名称，您可以提供 `mcp_names` 字典，将 `operationId` 值映射到所需的名称。`operationId` 必须与 OpenAPI 规范中显示的完全一致。提供的名称将始终被 slugified 和截断。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -360,9 +311,6 @@ mcp = FastMCP.from_openapi(
 
 您的 `mcp_component_fn` 应就地修改组件，而不是返回新组件。函数的结果将被忽略。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -404,10 +352,6 @@ FastMCP 智能处理 OpenAPI 请求中的不同类型参数：
 
 默认情况下，FastMCP 仅包含具有非空值的查询参数。具有 `None` 值或空字符串的参数会自动过滤掉。
 
-复制
-
-询问 AI
-
 ```
 # 调用此工具时...
 await client.call_tool("search_products", {
@@ -429,9 +373,6 @@ await client.call_tool("search_products", {
 - 验证是否提供了所有必需的路径参数
 - 对缺少的必需参数引发清晰的错误
 
-复制
-
-询问 AI
 
 ```
 # ✅ 这有效
@@ -449,9 +390,6 @@ FastMCP 根据 OpenAPI 规范处理数组参数：
 - **查询数组**：基于 `explode` 参数序列化（默认：`True`）
 - **路径数组**：序列化为逗号分隔值（OpenAPI 'simple' 样式）
 
-复制
-
-询问 AI
 
 ```
 # 查询数组，explode=true（默认）
@@ -473,9 +411,6 @@ FastMCP 根据 OpenAPI 规范处理数组参数：
 
 如果您的 API 需要身份验证，请在创建 MCP 服务器之前在 HTTP 客户端上配置它：
 
-复制
-
-询问 AI
 
 ```
 import httpx
@@ -496,9 +431,6 @@ mcp = FastMCP.from_openapi(..., client=api_client)
 
 为所有 API 请求设置超时：
 
-复制
-
-询问 AI
 
 ```
 mcp = FastMCP.from_openapi(
@@ -517,9 +449,6 @@ FastMCP 可以通过提取 FastAPI 应用的 OpenAPI 规范直接将其转换为
 
 FastMCP**不**包含 FastAPI 作为依赖项；要使用此集成，您必须单独安装它。
 
-复制
-
-询问 AI
 
 ```
 from fastapi import FastAPI
@@ -556,9 +485,6 @@ FastMCP 服务器不是 FastAPI 应用，即使是从 FastAPI 创建的。要了
 
 所有 OpenAPI 集成功能都适用于 FastAPI 应用：
 
-复制
-
-询问 AI
 
 ```
 from fastmcp.server.openapi import RouteMap, MCPType

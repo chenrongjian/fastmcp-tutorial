@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将推出！
-
-[FastMCP 主页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问 AI
-
-搜索...
-
-导航
-
 核心组件
 
 MCP 上下文

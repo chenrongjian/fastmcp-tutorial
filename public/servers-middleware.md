@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将发布！
-
-[FastMCP 主页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问AI
-
-搜索...
-
-导航
-
 服务器
 
 MCP 中间件
@@ -54,9 +41,6 @@ FastMCP中间件采用管道模型运行。当请求进入时，它会按照添�
 
 实现中间件的最基本方法是重写`Middleware`基类上的`__call__`方法：
 
-复制
-
-询问AI
 
 ```
 from fastmcp.server.middleware import Middleware, MiddlewareContext
@@ -133,10 +117,6 @@ FastMCP中间件对两种类型的操作处理方式不同：
 
 如果需要在执行操作期间检查组件属性（如标签），请使用上下文中可用的FastMCP服务器实例：
 
-复制
-
-询问AI
-
 ```
 from fastmcp.server.middleware import Middleware, MiddlewareContext
 from fastmcp.exceptions import ToolError
@@ -166,10 +146,6 @@ class TagBasedMiddleware(Middleware):
 ```
 
 相同模式适用于资源和提示词：
-
-复制
-
-询问AI
 
 ```
 from fastmcp.server.middleware import Middleware, MiddlewareContext
@@ -202,10 +178,6 @@ class ComponentAccessMiddleware(Middleware):
 
 对于列表操作，您可以直接检查和修改FastMCP组件：
 
-复制
-
-询问AI
-
 ```
 from fastmcp.server.middleware import Middleware, MiddlewareContext, ListToolsResult
 
@@ -230,9 +202,6 @@ class ListingFilterMiddleware(Middleware):
 
 每个中间件钩子都遵循相同的模式。让我们检查`on_message`钩子以了解其结构：
 
-复制
-
-询问AI
 
 ```
 async def on_message(self, context: MiddlewareContext, call_next):
@@ -278,9 +247,6 @@ async def on_message(self, context: MiddlewareContext, call_next):
 
 FastMCP中间件通过子类化`Middleware`基类并覆盖所需的钩子来实现。您只需实现与用例相关的钩子。
 
-复制
-
-询问AI
 
 ```
 from fastmcp import FastMCP
@@ -312,10 +278,6 @@ mcp.add_middleware(LoggingMiddleware())
 
 向服务器添加中间件很简单：
 
-复制
-
-询问AI
-
 ```
 mcp = FastMCP("MyServer")
 mcp.add_middleware(LoggingMiddleware())
@@ -326,9 +288,6 @@ mcp.add_middleware(LoggingMiddleware())
 
 中间件按照添加到服务器的顺序执行。添加的第一个中间件在进入时首先运行，在退出时最后运行：
 
-复制
-
-询问AI
 
 ```
 mcp = FastMCP("MyServer")
@@ -359,9 +318,6 @@ mcp.add_middleware(LoggingMiddleware())
 
 这允许您创建分层中间件架构，其中父服务器处理认证等横切关注点，而子服务器专注于特定领域的中间件。
 
-复制
-
-询问AI
 
 ```
 # 带有中间件的父服务器
@@ -389,9 +345,6 @@ parent.mount(child, prefix="child")
 
 此中间件检查所有请求上的有效授权令牌：
 
-复制
-
-询问AI
 
 ```
 from fastmcp.server.middleware import Middleware, MiddlewareContext
@@ -429,10 +382,6 @@ mcp.add_middleware(AuthenticationMiddleware("secret-token-123"))
 
 此中间件跟踪工具执行所需的时间：
 
-复制
-
-询问AI
-
 ```
 import time
 import logging
@@ -467,10 +416,6 @@ class PerformanceMiddleware(Middleware):
 ### [​](https://gofastmcp.com/servers/middleware\#request-transformation-middleware) 请求转换中间件
 
 此中间件向工具调用添加元数据：
-
-复制
-
-询问AI
 
 ```
 class TransformationMiddleware(Middleware):

@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将推出！
-
-[FastMCP 主页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问 AI
-
-搜索...
-
-导航
-
 服务器
 
 服务器组合
@@ -52,10 +39,6 @@ FastMCP 支持 [MCP 代理](https://gofastmcp.com/servers/proxy)，允许您在�
 ## [​](https://gofastmcp.com/servers/composition\#importing-static-composition) 导入（静态组合）
 
 `import_server()` 方法将所有组件（工具、资源、模板、提示词）从一个 `FastMCP` 实例（_子服务器_）复制到另一个实例（_主服务器_）。可以提供可选的 `prefix` 以避免命名冲突。如果未提供前缀，则组件将未经修改地导入。当多个服务器使用相同前缀（或无前缀）导入时，最近导入的服务器的组件优先。
-
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -118,9 +101,6 @@ if __name__ == "__main__":
 
 您也可以不指定前缀导入服务器，这将使用组件的原始名称进行复制：
 
-复制
-
-询问 AI
 
 ```
 
@@ -168,9 +148,6 @@ if __name__ == "__main__":
 
 `mount()` 方法在 `main_mcp` 服务器和 `subserver` 之间创建**实时链接**。不是复制组件，而是在运行时将与可选 `prefix` 匹配的组件请求**委托**给子服务器。如果未提供前缀，则可以无前缀访问子服务器的组件。当多个服务器使用相同前缀（或无前缀）挂载时，最近挂载的服务器对于冲突的组件名称优先。
 
-复制
-
-询问 AI
 
 ```
 import asyncio
@@ -246,10 +223,6 @@ FastMCP 支持两种挂载模式：
    - 当客户端连接时，挂载服务器的生命周期被执行
    - 通过内存中的 Client 传输进行通信
 
-复制
-
-询问 AI
-
 ```
 # 直接挂载（无自定义生命周期时默认）
 main_mcp.mount(api_server, prefix="api")
@@ -267,10 +240,6 @@ main_mcp.mount(api_server)
 #### [​](https://gofastmcp.com/servers/composition\#interaction-with-proxy-servers) 与代理服务器的交互
 
 使用 `FastMCP.as_proxy()` 创建代理服务器时，挂载该服务器将始终使用代理挂载：
-
-复制
-
-询问 AI
 
 ```
 # 为远程服务器创建代理
@@ -291,10 +260,6 @@ main_server.mount(remote_proxy, prefix="remote")
 
 在路径格式中，前缀添加到 URI 的路径部分：
 
-复制
-
-询问 AI
-
 ```
 resource://prefix/path/to/resource
 
@@ -305,10 +270,6 @@ resource://prefix/path/to/resource
 ### [​](https://gofastmcp.com/servers/composition\#protocol-format-legacy) 协议格式（旧版）
 
 在协议格式中，前缀作为协议的一部分添加：
-
-复制
-
-询问 AI
 
 ```
 prefix+resource://path/to/resource
@@ -321,10 +282,6 @@ prefix+resource://path/to/resource
 
 您可以在代码中全局配置前缀格式：
 
-复制
-
-询问 AI
-
 ```
 import fastmcp
 fastmcp.settings.resource_prefix_format = "protocol"
@@ -333,20 +290,12 @@ fastmcp.settings.resource_prefix_format = "protocol"
 
 或通过环境变量：
 
-复制
-
-询问 AI
-
 ```
 FASTMCP_RESOURCE_PREFIX_FORMAT=protocol
 
 ```
 
 或按服务器配置：
-
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -381,7 +330,3 @@ server = FastMCP("NewServer", resource_prefix_format="path")
 - [路径格式（默认）](https://gofastmcp.com/servers/composition#path-format-default)
 - [协议格式（旧版）](https://gofastmcp.com/servers/composition#protocol-format-legacy)
 - [配置前缀格式](https://gofastmcp.com/servers/composition#configuring-the-prefix-format)
-
-助手
-
-响应由 AI 生成，可能包含错误。

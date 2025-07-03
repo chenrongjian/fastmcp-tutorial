@@ -76,7 +76,3 @@ FastMCP 由 [Prefect](https://www.prefect.io/) 精心打造。
 - [什么是 MCP？](https://gofastmcp.com/getting-started/welcome#what-is-mcp%3F)
 - [为什么选择 FastMCP？](https://gofastmcp.com/getting-started/welcome#why-fastmcp%3F)
 - [LLM 友好文档](https://gofastmcp.com/getting-started/welcome#llm-friendly-docs)
-
-助手
-
-响应由 AI 生成，可能包含错误。

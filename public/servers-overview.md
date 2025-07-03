@@ -1,25 +1,9 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将发布！
-
-[FastMCP 首页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问AI
-
-搜索...
-
-导航
-
 开始使用
 
 欢迎使用FastMCP 2.0！
 
 [模型上下文协议](https://modelcontextprotocol.io/)（MCP）是一种新的标准化方式，用于为您的LLM提供上下文和工具，而FastMCP使构建MCP服务器和客户端变得简单直观。通过简洁的Python风格代码创建工具、公开资源、定义提示等：
 
-复制
-
-询问AI
 
 ```
 from fastmcp import FastMCP
@@ -96,7 +80,3 @@ FastMCP由[Prefect](https://www.prefect.io/)精心打造。
 - [什么是MCP？](https://gofastmcp.com/getting-started/welcome#what-is-mcp%3F)
 - [为什么选择FastMCP？](https://gofastmcp.com/getting-started/welcome#why-fastmcp%3F)
 - [LLM友好文档](https://gofastmcp.com/getting-started/welcome#llm-friendly-docs)
-
-助手
-
-响应由AI生成，可能包含错误。

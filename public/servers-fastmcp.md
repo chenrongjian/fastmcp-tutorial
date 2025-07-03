@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将发布！
-
-[FastMCP 首页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问AI
-
-搜索...
-
-导航
-
 服务器
 
 FastMCP服务器
@@ -21,9 +8,6 @@ FastMCP应用程序的核心是`FastMCP`服务器类。此类充当应用程序�
 
 实例化服务器非常简单。通常，您需要为服务器提供一个名称，这有助于在客户端应用程序或日志中识别它。
 
-复制
-
-询问AI
 
 ```
 from fastmcp import FastMCP
@@ -77,10 +61,6 @@ def multiply(a: float, b: float) -> float:
 
 资源公开客户端可以读取的数据源。
 
-复制
-
-询问AI
-
 ```
 @mcp.resource("data://config")
 def get_config() -> dict:
@@ -94,10 +74,6 @@ def get_config() -> dict:
 ### [​](https://gofastmcp.com/servers/fastmcp\#resource-templates)  资源模板
 
 资源模板是参数化资源，允许客户端请求特定数据。
-
-复制
-
-询问AI
 
 ```
 @mcp.resource("users://{user_id}/profile")
@@ -113,10 +89,6 @@ def get_user_profile(user_id: int) -> dict:
 ### [​](https://gofastmcp.com/servers/fastmcp\#prompts)  提示
 
 提示是用于指导LLM的可重用消息模板。
-
-复制
-
-询问AI
 
 ```
 @mcp.prompt
@@ -137,9 +109,6 @@ FastMCP支持基于标签的过滤，可根据可配置的包含/排除标签集
 
 定义组件时可以使用`tags`参数为其添加标签：
 
-复制
-
-询问AI
 
 ```
 @mcp.tool(tags={"public", "utility"})
@@ -162,10 +131,6 @@ def admin_tool() -> str:
 
 创建服务器时配置基于标签的过滤：
 
-复制
-
-询问AI
-
 ```
 # 仅公开标记为"public"的组件
 mcp = FastMCP(include_tags={"public"})
@@ -184,9 +149,6 @@ mcp = FastMCP(include_tags={"admin"}, exclude_tags={"deprecated"})
 
 FastMCP服务器需要传输机制才能与客户端通信。通常，您通过在`FastMCP`实例上调用`mcp.run()`方法来启动服务器，通常在主服务器脚本的`if __name__ == "__main__":`块中。此模式确保与各种MCP客户端的兼容性。
 
-复制
-
-询问AI
 
 ```
 # my_server.py
@@ -226,10 +188,6 @@ FastMCP支持使用`import_server`（静态复制）和`mount`（实时链接）
 
 有关完整详细信息、最佳实践和示例，请参阅[服务器组合](https://gofastmcp.com/servers/composition)指南。
 
-复制
-
-询问AI
-
 ```
 # 示例：导入子服务器
 from fastmcp import FastMCP
@@ -255,10 +213,6 @@ FastMCP可以使用`FastMCP.as_proxy`充当任何MCP服务器（本地或远程�
 
 有关详细信息和高级用法，请参阅[代理服务器](https://gofastmcp.com/servers/proxy)指南。
 
-复制
-
-询问AI
-
 ```
 from fastmcp import FastMCP, Client
 
@@ -275,10 +229,6 @@ proxy = FastMCP.as_proxy(backend, name="ProxyServer")
 ### [​](https://gofastmcp.com/servers/fastmcp\#server-specific-configuration)  服务器特定配置
 
 创建`FastMCP`实例时传递服务器特定设置，并控制服务器行为：
-
-复制
-
-询问AI
 
 ```
 from fastmcp import FastMCP
@@ -300,10 +250,6 @@ mcp = FastMCP(
 
 全局设置影响所有FastMCP服务器，可以通过环境变量（前缀为`FASTMCP_`）或`.env`文件进行配置：
 
-复制
-
-询问AI
-
 ```
 import fastmcp
 
@@ -323,10 +269,6 @@ print(fastmcp.settings.resource_prefix_format)  # 默认："path"
 ### [​](https://gofastmcp.com/servers/fastmcp\#transport-specific-configuration)  传输特定配置
 
 运行服务器时提供传输设置，并控制网络行为：
-
-复制
-
-询问AI
 
 ```
 # 运行时配置传输
@@ -350,10 +292,6 @@ await mcp.run_async(
 
 可以通过环境变量配置设置：
 
-复制
-
-询问AI
-
 ```
 # 全局设置
 export FASTMCP_LOG_LEVEL=DEBUG
@@ -368,9 +306,6 @@ export FASTMCP_RESOURCE_PREFIX_FORMAT=protocol
 
 默认情况下，当需要将工具返回值转换为文本时，FastMCP会将其序列化为JSON。创建服务器时，您可以通过提供`tool_serializer`函数来自定义此行为：
 
-复制
-
-询问AI
 
 ```
 import yaml
@@ -420,7 +355,3 @@ def get_config():
 - [传输特定配置](https://gofastmcp.com/servers/fastmcp#transport-specific-configuration)
 - [环境变量](https://gofastmcp.com/servers/fastmcp#environment-variables)
 - [自定义工具序列化](https://gofastmcp.com/servers/fastmcp#custom-tool-serialization)
-
-助手
-
-响应由AI生成，可能包含错误。

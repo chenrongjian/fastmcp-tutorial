@@ -90,4 +90,4 @@ bun dev
 
 ---
 
-Made with ❤️ by FastMCP Team
+Made with ❤️ by Chenrongjian and Trae

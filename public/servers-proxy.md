@@ -1,16 +1,3 @@
-[FastMCP Cloud](https://fastmcp.link/x0Kyhy2) 即将推出！
-
-[FastMCP 主页\\
-FastMCP](https://gofastmcp.com/)
-
-搜索文档...
-
-Ctrl K询问 AI
-
-搜索...
-
-导航
-
 服务器
 
 代理服务器
@@ -38,9 +25,6 @@ FastMCP 提供强大的代理功能，允许一个 FastMCP 服务器实例充当
 
 创建代理的最简单方法是使用 `FastMCP.as_proxy()` 类方法。这将创建一个标准的 FastMCP 服务器，用于将请求转发到另一个 MCP 服务器。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -70,9 +54,6 @@ proxy_from_client = FastMCP.as_proxy(backend_client)
 
 一个常见用例是桥接传输层。例如，通过 Stdio 在本地提供远程 SSE 服务器：
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -89,9 +70,6 @@ proxy = FastMCP.as_proxy("http://example.com/mcp/sse", name="SSE 到 Stdio 代�
 
 您还可以代理内存中的 `FastMCP` 实例，这对于调整您不完全控制的服务器的配置或行为非常有用。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -120,9 +98,6 @@ proxy = FastMCP.as_proxy(
 
 您可以直接从遵循 MCPConfig 模式的配置字典创建代理。这对于快速设置到远程服务器的代理非常有用，无需手动配置每个连接细节。
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -150,9 +125,6 @@ MCPConfig 格式遵循新兴的 MCP 服务器配置标准，可能会随着规�
 
 您还可以使用 MCPConfig 创建到多个服务器的代理。当指定多个服务器时，它们会自动以其配置名称作为前缀进行挂载，从而为所有服务器提供统一的接口：
 
-复制
-
-询问 AI
 
 ```
 from fastmcp import FastMCP
@@ -197,7 +169,3 @@ composite_proxy = FastMCP.as_proxy(config, name="复合代理")
 - [内存中代理](https://gofastmcp.com/servers/proxy#in-memory-proxies)
 - [基于配置的代理](https://gofastmcp.com/servers/proxy#configuration-based-proxies)
 - [FastMCPProxy 类](https://gofastmcp.com/servers/proxy#fastmcpproxy-class)
-
-助手
-
-响应由 AI 生成，可能包含错误。
