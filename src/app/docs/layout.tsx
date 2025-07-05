@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import { mdFiles } from "@/lib/constants";
 import { useRouter, usePathname } from "next/navigation";
-import Link from 'next/link'
+import Link from 'next/link';
 
 // 分组英文前缀到中文
 const groupNameMap: Record<string, string> = {
@@ -119,7 +119,7 @@ export default function DocsLayout({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState(false);
   const groups = groupFiles(mdFiles);
 
@@ -131,7 +131,7 @@ export default function DocsLayout({
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    setSidebarOpen(window.innerWidth > 768); // Set initial sidebar state based on screen width
+    setSidebarOpen(window.innerWidth > 768);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -164,22 +164,26 @@ export default function DocsLayout({
     return pathname === href;
   };
 
+  // 侧边栏切换函数
+  const toggleSidebar = () => {
+    console.log('Toggle sidebar clicked, current state:', sidebarOpen);
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div className="flex h-[calc(100vh-64px)]">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0 bg-[#111] border-r border-white/5">
-        {/* Back to home button */}
-        <div className="h-12 border-b border-white/5 flex items-center px-4">
-          <Link
-            href="/"
-            className={`flex items-center gap-2 text-sm text-gray-400 hover:text-gray-200 transition-colors group ${
-              isActive('/') ? 'text-white' : ''
-            }`}
-          >
-            <FiChevronLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
-            返回首页
-          </Link>
-        </div>
+      <div className="flex h-[calc(100vh-64px)] relative">
+        {/* 侧边栏切换按钮 - 固定在左侧，确保始终可见 */}
+        <button
+          onClick={toggleSidebar}
+          className="fixed left-4 top-20 z-50 p-1.5 rounded-full bg-black border border-white/10 hover:bg-white/15 transition-all duration-300 shadow-lg hover:shadow-white/10"
+          aria-label="Toggle sidebar"
+        >
+          {sidebarOpen ? <FiX size={14} color="#a0aec0" /> : <FiMenu size={14} color="#a0aec0" />}
+        </button>
+        {/* Sidebar */}
+        <div className={`sidebar ${sidebarOpen ? '' : 'sidebar-collapsed'} transition-all duration-300 ease-in-out`} style={{ width: sidebarOpen ? '280px' : '0px' }}>
+          {/* 侧边栏头部 */}
+          <div className="h-12 border-b border-white/5"></div>
 
         {/* Navigation */}
         <nav className="h-[calc(100vh-112px)] overflow-y-auto custom-scrollbar">
@@ -834,7 +838,7 @@ export default function DocsLayout({
       </div>
 
       {/* Main content */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar bg-black">
+      <div className={`flex-1 overflow-y-auto custom-scrollbar bg-black transition-all duration-300 ease-in-out ${sidebarOpen ? '' : 'ml-0'}`}>
         <div className="max-w-4xl mx-auto px-8 py-12">
           {children}
         </div>

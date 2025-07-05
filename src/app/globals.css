@@ -140,14 +140,14 @@ body {
 .sidebar-toggle-btn-fixed {
   position: fixed;
   top: 1rem;
-  left: 1rem;
-  width: 36px;
-  height: 36px;
+  left: calc(var(--sidebar-width) - 2rem);
+  width: 28px;
+  height: 28px;
   background: var(--surface-secondary);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--text-primary);
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   display: flex;
@@ -159,8 +159,8 @@ body {
 }
 
 .sidebar-toggle-btn-fixed:hover {
-  background: var(--accent);
-  color: var(--foreground);
+  background: var(--surface-primary);
+  color: var(--accent);
   transform: scale(1.08);
 }
 
