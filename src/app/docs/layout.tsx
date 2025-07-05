@@ -181,12 +181,12 @@ export default function DocsLayout({
           {sidebarOpen ? <FiX size={14} color="#a0aec0" /> : <FiMenu size={14} color="#a0aec0" />}
         </button>
         {/* Sidebar */}
-        <div className={`sidebar ${sidebarOpen ? '' : 'sidebar-collapsed'} transition-all duration-300 ease-in-out`} style={{ width: sidebarOpen ? '280px' : '0px' }}>
+        <div className={`sidebar ${sidebarOpen ? '' : 'sidebar-collapsed'} transition-all duration-300 ease-in-out`} style={{ width: sidebarOpen ? '240px' : '0px' }}>
           {/* 侧边栏头部 */}
           <div className="h-12 border-b border-white/5"></div>
 
         {/* Navigation */}
-        <nav className="h-[calc(100vh-112px)] overflow-y-auto custom-scrollbar">
+        <nav className="h-[calc(100vh-60px)] overflow-y-auto custom-scrollbar">
           <div className="p-4 space-y-6">
             {/* Quick Start Section */}
             <div>
