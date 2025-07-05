@@ -2,7 +2,7 @@
 
 ![FastMCP Banner](public/fastmcp-banner.png)
 
-FastMCP教程是一个基于Next.js构建的文档网站，提供MCP（Modular Coprocessor）框架的完整使用指南、API文档和集成示例。
+这是一个关于 fastMCP 中文版教程网站，是一个基于fastMCP原英文教程网站，然后通过Trae AI IDE进行vibe coding 出来的的一个中文版教程网站。后续作者会根据自己在原fastmMCP英文教程网站学习的笔记或者后续原教程更新的内容同步翻译到该网站上，欢迎各位观众老爷们前来观看
 
 ## ✨ 项目特点
 

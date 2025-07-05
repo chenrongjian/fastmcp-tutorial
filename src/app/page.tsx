@@ -82,9 +82,9 @@ export default function Home() {
             icon={<FiBookOpen size={24} />}
           />
           <HomeCard 
-            href="https://github.com/fastmcp/fastmcp" 
+            href="https://github.com/chenrongjian/fastmcp-tutorial" 
             title="GitHub" 
-            desc="Star & Fork FastMCP 源码" 
+            desc="Star & Fork 教程源码" 
             icon={<FiGithub size={24} />}
             external 
           />

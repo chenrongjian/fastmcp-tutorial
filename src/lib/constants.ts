@@ -1,4 +1,5 @@
 export const mdFiles = [
+  "aboutme.md",
   "getting-started-welcome.md",
   "changelog.md",
   "clients-auth-bearer.md",
