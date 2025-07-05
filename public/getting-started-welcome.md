@@ -54,25 +54,3 @@ FastMCP 旨在成为：
 🔍 **完整**：适用于从开发到生产的所有 MCP 用例的综合平台
 
 FastMCP 由 [Prefect](https://www.prefect.io/) 精心打造。
-
-## LLM 友好文档
-
-本文档也有 [llms.txt 格式](https://llmstxt.org/)，这是一种简单的 Markdown 标准，LLM 可以轻松使用。
-
-有两种访问 LLM 友好文档的方式：
-
-- [llms.txt](https://gofastmcp.com/llms.txt) 本质上是一个站点地图，列出了文档中的所有页面。
-- [llms-full.txt](https://gofastmcp.com/llms-full.txt) 包含完整文档。请注意，这可能超出您 LLM 的上下文窗口。
-
-此外，任何页面都可以通过在 URL 后附加 `.md` 来以 Markdown 格式访问。例如，本页面将变为 `https://gofastmcp.com/getting-started/welcome.md`，您可以在 [此处](https://gofastmcp.com/getting-started/welcome.md) 查看。
-
-最后，您可以通过按键盘上的“Cmd+C”（或 Windows 上的“Ctrl+C”）将任何页面的内容复制为 Markdown。
-
-[安装](https://gofastmcp.com/getting-started/installation)
-
-本页面内容
-
-- [超越协议](https://gofastmcp.com/getting-started/welcome#beyond-the-protocol)
-- [什么是 MCP？](https://gofastmcp.com/getting-started/welcome#what-is-mcp%3F)
-- [为什么选择 FastMCP？](https://gofastmcp.com/getting-started/welcome#why-fastmcp%3F)
-- [LLM 友好文档](https://gofastmcp.com/getting-started/welcome#llm-friendly-docs)
