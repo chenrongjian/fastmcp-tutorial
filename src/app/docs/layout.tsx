@@ -206,7 +206,36 @@ export default function DocsLayout({
                 </Link>
               </div>
               </div>
-              
+             {/* Tutorials Section */}
+            <div>
+              <h2 className="text-lg font-medium text-white mb-3 px-3">教程</h2>
+              <div className="space-y-1">
+                <Link
+                  href="/docs/tutorials-mcp"
+                  className={`block px-3 py-2 text-[13px] rounded-md transition-all duration-300 ${
+                    isActive('/docs/tutorials-mcp') ? 'text-white bg-gradient-to-r from-white/10 to-transparent border-l-2 border-white/50 pl-4' : 'text-gray-400 hover:text-white hover:bg-gradient-to-r from-white/5 to-transparent hover:translate-x-1 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]'
+                  }`}
+                >
+                  MCP概念
+                </Link>
+                <Link
+                  href="/docs/tutorials-create-mcp-server"
+                  className={`block px-3 py-2 text-[13px] rounded-md transition-all duration-300 ${
+                    isActive('/docs/tutorials-create-mcp-server') ? 'text-white bg-gradient-to-r from-white/10 to-transparent border-l-2 border-white/50 pl-4' : 'text-gray-400 hover:text-white hover:bg-gradient-to-r from-white/5 to-transparent hover:translate-x-1 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]'
+                  }`}
+                >
+                  创建MCP服务器
+                </Link>
+                <Link
+                  href="/docs/tutorials-rest-api"
+                  className={`block px-3 py-2 text-[13px] rounded-md transition-all duration-300 ${
+                    isActive('/docs/tutorials-rest-api') ? 'text-white bg-gradient-to-r from-white/10 to-transparent border-l-2 border-white/50 pl-4' : 'text-gray-400 hover:text-white hover:bg-gradient-to-r from-white/5 to-transparent hover:translate-x-1 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]'
+                  }`}
+                >
+                  LLM连接到RESTAPI
+                </Link>
+              </div>
+              </div>  
             {/* Client Section */}
             <div>
               <h2 className="text-lg font-medium text-white mb-3 px-3">客户端</h2>
